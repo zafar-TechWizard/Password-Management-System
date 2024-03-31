@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        .logout {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            color: #dc3545;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .logout:hover {
+            color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {% if username %} {{ username }} {% else %} Guest {% endif %}!</h1>
+        {% if username %}
+        <h2>Manage Your Passwords</h2>
+        <ul>
+            <li><a href="{{ url_for('add_password') }}">Add New Password</a></li>
+            <li><a href="{{ url_for('modify_password') }}">Modify Password</a></li>
+            <li><a href="{{ url_for('saved_passwords') }}">View Saved Passwords</a></li>
+        </ul>
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+        {% else %}
+        <p>Please <a href="{{ url_for('login') }}">log in</a> to manage your passwords.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
