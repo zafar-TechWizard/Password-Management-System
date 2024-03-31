@@ -1,0 +1,4 @@
+flask
+hashlib
+flask_bcrypt
+sqlite3
